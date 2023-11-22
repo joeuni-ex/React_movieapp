@@ -4,9 +4,17 @@
 }
 
 @font-face {
-  font-family: "Tenada";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2")
-    format("woff2");
+  font-family: "JalnanGothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 티몬체 */
+@font-face {
+  font-family: "TmonMonsori";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/TmonMonsori.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -20,5 +28,10 @@
 body {
   background-color: #101010;
   color: #fff;
-  font-family: "Pretendard-Regular", sans-serif;
+  font-family: "TmonMonsori", sans-serif;
+}
+
+.align_center {
+  display: flex;
+  align-items: center;
 }
