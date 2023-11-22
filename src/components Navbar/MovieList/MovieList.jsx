@@ -2,16 +2,16 @@ import "./MovieList.css";
 import Fire from "../../assets/fire.png";
 import MovieCard from "./MovieCard";
 import { useEffect, useState } from "react";
+import _ from "lodash";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([]); //API로 받아온 영화 목록
   const [filterMovies, setFilterMovies] = useState([]);
   const [minRating, setMinRating] = useState(0);
-
-  //한 번만 실행
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+  const [sort, setSort] = useState({
+    by: "default",
+    order: "asc",
+  }); //정렬
 
   //모든 영화 가져오기
   const fetchMovies = async () => {
@@ -36,6 +36,25 @@ export default function MovieList() {
       setFilterMovies(filtered);
     }
   };
+
+  //정렬
+  const handelSort = (e) => {
+    const { name, value } = e.target;
+    setSort((prev) => ({ ...prev, [name]: value }));
+  };
+  //sort값이 바뀔 때마다 그 값으로 정렬
+  useEffect(() => {
+    if (sort.by !== "default") {
+      const sortedMovies = _.orderBy(filterMovies, [sort.by], [sort.order]);
+      setFilterMovies(sortedMovies);
+    }
+  }, [sort]);
+
+  //한 번만 실행
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
   return (
     <section className="movie_list">
       <header className="align_center movie_list_header">
@@ -76,15 +95,24 @@ export default function MovieList() {
               6+ Star
             </li>
           </ul>
-
-          <select name="" id="" className="movie_sorting">
-            <option value="">SortBy</option>
-            <option value="">Date</option>
-            <option value="">Rating</option>
+          <select
+            name="by"
+            id="by"
+            onChange={handelSort}
+            className="movie_sorting"
+          >
+            <option value="default">정렬기준</option>
+            <option value="release_date">날짜순</option>
+            <option value="vote_average">평점순</option>
           </select>
-          <select name="" id="" className="movie_sorting">
-            <option value="">Ascending</option>
-            <option value="">Descending</option>
+          <select
+            name="order"
+            id="order"
+            onChange={handelSort}
+            className="movie_sorting"
+          >
+            <option value="asc">오름차순</option>
+            <option value="desc">내림차순</option>
           </select>
         </div>
       </header>
