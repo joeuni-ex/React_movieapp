@@ -38,6 +38,11 @@
   transition: all 0.3s ease-in-out;
 }
 
+/* 스크롤 css */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--body_backgroud);
   color: var(--body_color);

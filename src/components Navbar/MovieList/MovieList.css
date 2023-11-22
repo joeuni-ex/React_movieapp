@@ -15,6 +15,7 @@
 }
 
 .movie_filter_item {
+  color: var(--body_color);
   padding: 5px 10px;
   cursor: pointer;
 }
