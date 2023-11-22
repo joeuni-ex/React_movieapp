@@ -1,8 +1,26 @@
 import "./MovieList.css";
 import Fire from "../../assets/fire.png";
 import MovieCard from "./MovieCard";
+import { useEffect, useState } from "react";
 
 export default function MovieList() {
+  const [movies, setMovies] = useState([]); //API로 받아온 영화 목록
+
+  //한 번만 실행
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  const fetchMovies = async () => {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${
+        import.meta.env.VITE_MOVIE_API_KEY
+      }&language=ko`
+    );
+    const data = await response.json();
+    setMovies(data.results); //영화 목록에 담기
+  };
+  console.log(movies);
   return (
     <section className="movie_list">
       <header className="align_center movie_list_header">
@@ -29,9 +47,9 @@ export default function MovieList() {
         </div>
       </header>
 
-      <div className="movie_cards">
-        <MovieCard />
-      </div>
+      {movies.map((movie) => {
+        <MovieCard key={movie.id} movie={movie} />;
+      })}
     </section>
   );
 }
