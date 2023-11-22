@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url(./assets/fonts/Pretendard-Regular.woff2);
+}
+
+@font-face {
+  font-family: "Tenada";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +20,5 @@
 body {
   background-color: #101010;
   color: #fff;
+  font-family: "Pretendard-Regular", sans-serif;
 }
