@@ -1,14 +1,15 @@
 import Fire from "../../assets/fire.png";
 import Star from "../../assets/glowing-star.png";
 import Party from "../../assets/partying-face.png";
+import DarkMode from "../DarkMode/DarkMode";
 import "./Navbar.css";
 
 export default function Navbar() {
   return (
     <nav className="navbar">
       <h1>MovieApp</h1>
-
       <div className="navbar_links">
+        <DarkMode />
         <a href="">
           인기순
           <img className="navbar_emoji" src={Fire} alt="fire emoji" />
