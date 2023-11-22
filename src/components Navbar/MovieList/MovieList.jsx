@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 export default function MovieList() {
   const [movies, setMovies] = useState([]); //API로 받아온 영화 목록
+  const [filterMovies, setFilterMovies] = useState([]);
+  const [minRating, setMinRating] = useState(0);
 
   //한 번만 실행
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function MovieList() {
     const data = await response.json();
     setMovies(data.results); //영화 목록에 담기
   };
-  console.log(movies);
+
   return (
     <section className="movie_list">
       <header className="align_center movie_list_header">
@@ -46,10 +48,12 @@ export default function MovieList() {
           </select>
         </div>
       </header>
-
-      {movies.map((movie) => {
-        <MovieCard key={movie.id} movie={movie} />;
-      })}
+      <div className="movie_cards">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+        ;
+      </div>
     </section>
   );
 }
