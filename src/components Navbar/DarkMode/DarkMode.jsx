@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./DarkMode.css";
 import Sun from "../../assets/Sun.svg?react";
@@ -13,7 +13,11 @@ const DarkMode = () => {
   const toggleTheme = (e) =>
     e.target.checked ? setDarkTheme() : setLightTheme();
 
-  setDarkTheme();
+  useEffect(() => {
+    //시작시 라이트 테마로 시작
+    document.querySelector("body").setAttribute("data-theme", "light");
+  }, []);
+
   return (
     <div className="dark_mode">
       <input
